@@ -61,11 +61,21 @@ class MyActivity : AppCompatActivity() {
     - **`Dispatchers.IO`**: 입출력, 네트워크 작업 등을 처리하기 위한 백그라운드 스레드 풀. 파일 입출력, 데이터베이스 작업, 네트워크 통신 등에 사용
     - **`Dispatchers.Default`**: CPU 집약적인 작업을 위한 스레드 풀. 대규모 리스트 처리, JSON 파싱, 복잡한 계산 등에 적합
     - **`Dispatchers.Unconfined`**: 현재 스레드를 계속해서 사용하지만, 코루틴이 일시 중지되고 재개될 때는 호출한 코루틴의 스레드를 사용
-    
+```
+Dispatchers.Unconfined 자주 안씀
+Dispatchers.Main와 Dispatchers.IO 를 구분해서 쓸것
+메인과 IO
+
+```    
 - **WithContext**: 특정 디스패처로 코루틴을 전환
     - 특정 디스패처로 코루틴을 전환하여 비동기 작업을 효율적으로 관리할 수 있음
     - **`withContext`**를 사용하는 함수는 **`suspend`** 키워드를 포함해야 하며, 이는 해당 함수가 코루틴 또는 다른 중단 함수 내에서만 호출될 수 있음을 의미
+```
+Context Switching 컨텍스트 스위칭 문맥교환이라고도 함
 
+메인(UI 스레드)으로 작업을 하다가 어떤 작업은 처리 시간이 긴 IO 작업으로 해야 할 때
+WithContext 를 사용한다. 이것을 사용할 때는 suspend 키워드를 포함해야 한다.
+```
 - **API 데이터 로딩 및 처리의 비동기화 구현**
     - repository.getWeather()는 서버에서 정보를 받아오는 코드로 시간이 오래 걸림
     
