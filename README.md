@@ -116,6 +116,12 @@ private fun fetchWeatherData(city: String = "서울특별시") {
         }
     }
 ```
+
+```
+Fragment 안에서 lifecycleScope로 코루틴 스코프를 실행하되 레포지토리에서 getWeather는 문맥교환
+WithContext(Dispatchers.IO) { supsend } 로 IO로 실행되도록 했기 때문에 이 함수는 io에서
+다른 UI 메인스레드는 메인스레드에서 실행된다. 
+```
 ### ⁉️  Fragment가 여러 개인데 도시 정보를 변경 시, 도시 정보 변경 시 모든 화면이 함께 업데이트가 되려면 어떻게 해야 할까요?
 
 - 화면이 고도화될수록 Data도 한 번에 여러 화면에 공유가 되어야 해요. 이런 것들을 효율적으로 관리하려면 어떻게 해야 하나요?
