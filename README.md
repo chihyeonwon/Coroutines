@@ -120,7 +120,12 @@ private fun fetchWeatherData(city: String = "서울특별시") {
 ```
 Fragment 안에서 lifecycleScope로 코루틴 스코프를 실행하되 레포지토리에서 getWeather는 문맥교환
 WithContext(Dispatchers.IO) { supsend } 로 IO로 실행되도록 했기 때문에 이 함수는 io에서
-다른 UI 메인스레드는 메인스레드에서 실행된다. 
+다른 UI 메인스레드는 메인스레드에서 실행된다.
+
+정리하자면 서버에서 데이터를 가져오거나 데이터베이스 접근해야하는 등 비동기 처리가 필요한 작업시간이
+긴 작업들은 Dispatchers.IO 이고 메인스레드에서 문맥교환을 위한 WithContext(Dispatchers.IO) { } 안에 작업의 선언을 suspend 키워드로 선언한다.
+
+UI에 연결하여 ui를 그리는 등, 터치 등을 하기 위한 메인 스레드는 Dispatchers.Main
 ```
 ### ⁉️  Fragment가 여러 개인데 도시 정보를 변경 시, 도시 정보 변경 시 모든 화면이 함께 업데이트가 되려면 어떻게 해야 할까요?
 
