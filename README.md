@@ -34,7 +34,10 @@
         2. **CoroutineScope**: 사용자 정의 스코프를 생성. 특정 작업 또는 클래스의 생명주기와 연결
         3. **lifecycleScope**: 안드로이드의 **`Activity`**나 **`Fragment`**의 생명주기와 연결된 스코프
         4. **viewModelScope**: 안드로이드의 **`ViewModel`**과 연결된 스코프
-     
+```
+1번은 너무 전역적인 스코프라 위험해서 안쓰고, CoroutineScope는 복잡해서 안씀
+3, 4 lifecycleScope와 viewModelScope를 자주 사용
+```
 ```kotlin
 class MyViewModel : ViewModel() {
     fun performAction() {
